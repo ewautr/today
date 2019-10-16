@@ -74,6 +74,7 @@ main {
   height: 100vh;
 
   display: grid;
+  grid-template-rows: max-content 1fr;
   align-items: center;
   justify-items: left;
   padding-left: 6rem;
@@ -83,20 +84,8 @@ main {
 
 /* LEFT SIDE -------------  */
 #pageTitle {
-  font-size: 16rem;
-  /* background: url("textleaf.png");
-  background-size: 20%;
-  background-position: top center;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  animation: moveBg 3s forwards; */
+  font-size: 13rem;
 }
-
-/* @keyframes moveBg {
-  to {
-    background-position: top left;
-  }
-} */
 
 .time-wrapper,
 .day-wrapper {
@@ -210,7 +199,7 @@ input {
 
   border: none;
   font-family: inherit;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 400;
   color: #fff;
 
@@ -219,7 +208,7 @@ input {
 
 input::placeholder {
   font-family: inherit;
-  font-size: 4rem;
+  font-size: 3rem;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -238,7 +227,7 @@ select {
   width: 50%;
   background: var(--color-bg-header);
   padding: 0.5rem 1rem;
-  font-size: 4rem;
+  font-size: 3rem;
   color: #fff;
   border: none;
   border-radius: 0;
@@ -257,6 +246,29 @@ select {
   cursor: pointer;
 }
 
+.navIcon:hover {
+  animation: rotateme 0.5s linear forwards;
+}
+
+@keyframes rotateme {
+  0% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+  33% {
+    transform: translateY(2rem) translateX(-50%);
+    opacity: 0;
+  }
+  66% {
+    transform: translateY(-2rem) translateX(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+}
+
 .slideIn {
   transform: translateX(0);
 }
@@ -267,5 +279,34 @@ select {
   right: 2rem;
   color: var(--color-nav);
   font-size: 4rem;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.close:hover {
+  animation: rotateme 0.5s linear forwards;
+}
+
+/* MESSAGE ------------- */
+.insMes {
+  z-index: 2;
+  text-align: right;
+  justify-self: right;
+  padding-right: 3rem;
+}
+.insp {
+  margin-top: 7rem;
+  font-size: 1.6rem;
+}
+.message {
+  font-size: 3rem;
+}
+
+/* DAY CHANGE ------------- */
+.nextDay {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  transform: translateY(-50%);
   cursor: pointer;
 }

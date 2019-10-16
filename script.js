@@ -1,5 +1,14 @@
 "use strict";
 
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  loadJSON();
+  showInspMes();
+  showTime();
+  showDate();
+}
+
 //DATE
 const months = [
   "January",
@@ -24,11 +33,46 @@ const days = [
   "Friday",
   "Saturday"
 ];
+// let number = 0;
+// const today = new Date();
+// const yyyy = today.getFullYear();
+// const mm = months[today.getMonth()];
+// let dd = suffixedDay(today.getDate() + number);
+// let wd = days[today.getDay()];
+
+// document.querySelector(".nextDay").addEventListener("click", e => {
+//   document.querySelector(".tasks-container").innerHTML = "";
+//   number++;
+//   if (number >= 6) {
+//     number = 0;
+//   }
+//   dd = suffixedDay(today.getDate() + number);
+//   wd = days[today.getDay() + number];
+//   console.log(number);
+//   init();
+// });
+
 const today = new Date();
+let number = today.getDay();
+let i = 0;
 const yyyy = today.getFullYear();
 const mm = months[today.getMonth()];
-const dd = suffixedDay(today.getDate());
-const wd = days[today.getDay()];
+let dd = suffixedDay(today.getDate());
+let wd = days[number];
+
+document.querySelector(".nextDay").addEventListener("click", e => {
+  document.querySelector("#pageTitle").textContent = "Next day.";
+  document.querySelector(".tasks-container").innerHTML = "";
+  number++;
+  i++;
+  if (number > 6) {
+    number = 0;
+  }
+  dd = suffixedDay(today.getDate() + i);
+  wd = days[number];
+  init();
+});
+
 const tomorrow = days[today.getDay() + 1];
 
 function suffixedDay(n) {
@@ -40,8 +84,10 @@ function suffixedDay(n) {
   );
 }
 
-const curDate = `${wd} ${dd} ${mm} ${yyyy}`;
-document.querySelector(".content-day").textContent = curDate;
+function showDate() {
+  const curDate = `${wd} ${dd} ${mm} ${yyyy}`;
+  document.querySelector(".content-day").textContent = curDate;
+}
 
 //TIME
 function formatAMPM(date) {
@@ -55,7 +101,9 @@ function formatAMPM(date) {
   return strTime;
 }
 const curTime = formatAMPM(new Date());
-document.querySelector(".content-time").textContent = curTime;
+function showTime() {
+  document.querySelector(".content-time").textContent = curTime;
+}
 
 //CHANGE TITLE
 const input = document.querySelector("#changeTitle");
@@ -91,7 +139,6 @@ function setTheme() {
 
 //SHOW TASK
 const jsonLink = "tasks.json";
-loadJSON();
 function loadJSON() {
   fetch(jsonLink)
     .then(response => response.json())
@@ -115,7 +162,10 @@ function displayTask(task) {
 }
 
 //MESSAGE OF THE DAY
-document.querySelector(".message").textContent = `Be kind this ${wd}.`;
+function showInspMes() {
+  document.querySelector(".message").textContent = `Be kind.`;
+  document.querySelector(".insp").textContent = `${wd}'s inspiration:`;
+}
 
 //MENU SLIDER
 const navIcon = document.querySelector(".navIcon");
