@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <div></div>
+      <div class="nav-content">
+        <p class="close">&times;</p>
+        <div class="change-title">
+          <label for="changeTitle">Change title.</label>
+          <input type="text" maxlength="6" id="changeTitle" placeholder="..." />
+          <button id="submitTitle">+</button>
+        </div>
+        <div class="change-color">
+          <label for="colorTheme">Change color theme.</label>
+          <select name="colorTheme" id="colorTheme">
+            <option value="orange">orange</option>
+            <option value="pink">pink</option>
+            <option value="black">black</option>
+            <option value="white">white</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <div class="navIcon">
+        <span>...</span>
+      </div>
+      <div class="container">
+        <h1 id="pageTitle">Today.</h1>
+        <div class="time-wrapper">
+          <p class="content-time"></p>
+          <p class="content-whitespace"></p>
+        </div>
+        <div class="day-wrapper">
+          <p class="content-whitespace"></p>
+          <p class="content-day"></p>
+        </div>
+        <h2 class="message"></h2>
+      </div>
+    </header>
+
+    <main>
+      <div class="leaf"></div>
+      <!-- <img src="leaf1.png" alt="" class="leaf" /> -->
+      <div class="tasks-container"></div>
+    </main>
+    <template id="template">
+      <article class="task">
+        <h2>taskname</h2>
+        <h3>tasktime</h3>
+        <p>taskdescription</p>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
