@@ -101,7 +101,10 @@ main {
 }
 
 .time-wrapper,
-.day-wrapper {
+.day-wrapper,
+.weather-wrapper,
+.weather-wrapper2,
+.city-wrapper {
   display: grid;
   align-items: center;
   grid-gap: 1rem;
@@ -110,12 +113,32 @@ main {
   font-size: 3rem;
 }
 
-.time-wrapper {
+.time-wrapper,
+.weather-wrapper {
   grid-template-columns: max-content 1fr;
 }
 
-.day-wrapper {
+.day-wrapper,
+.weather-wrapper2,
+.city-wrapper {
   grid-template-columns: 1fr max-content;
+}
+
+.cloud {
+  display: block;
+  width: 7rem;
+  margin: auto;
+}
+.weather-wrapper,
+.weather-wrapper2,
+.city-wrapper {
+  width: 50%;
+  margin: auto;
+  font-size: 2rem;
+}
+
+.show-weather {
+  opacity: 0.5;
 }
 
 .content-whitespace {
