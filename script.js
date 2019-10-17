@@ -33,24 +33,6 @@ const days = [
   "Friday",
   "Saturday"
 ];
-// let number = 0;
-// const today = new Date();
-// const yyyy = today.getFullYear();
-// const mm = months[today.getMonth()];
-// let dd = suffixedDay(today.getDate() + number);
-// let wd = days[today.getDay()];
-
-// document.querySelector(".nextDay").addEventListener("click", e => {
-//   document.querySelector(".tasks-container").innerHTML = "";
-//   number++;
-//   if (number >= 6) {
-//     number = 0;
-//   }
-//   dd = suffixedDay(today.getDate() + number);
-//   wd = days[today.getDay() + number];
-//   console.log(number);
-//   init();
-// });
 
 const today = new Date();
 let number = today.getDay();
@@ -60,8 +42,11 @@ const mm = months[today.getMonth()];
 let dd = suffixedDay(today.getDate());
 let wd = days[number];
 
+//EVENT FOR CHANGING DISPLAYED THE DAY
 document.querySelector(".nextDay").addEventListener("click", e => {
-  document.querySelector("#pageTitle").textContent = "Next day.";
+  document.querySelector(".tasks-container").classList.add("taskAnimate");
+
+  document.querySelector("#pageTitle").textContent = "Next.";
   document.querySelector(".tasks-container").innerHTML = "";
   number++;
   i++;
@@ -71,6 +56,9 @@ document.querySelector(".nextDay").addEventListener("click", e => {
   dd = suffixedDay(today.getDate() + i);
   wd = days[number];
   init();
+  setTimeout(() => {
+    document.querySelector(".tasks-container").classList.remove("taskAnimate");
+  }, 1000);
 });
 
 const tomorrow = days[today.getDay() + 1];
@@ -126,14 +114,16 @@ function setTheme() {
   const html = document.querySelector("html");
   if (chosenTheme == "yellow") {
     html.setAttribute("data-attribute", "yellow");
-  } else if (chosenTheme == "white") {
-    html.setAttribute("data-attribute", "white");
-  } else if (chosenTheme == "black") {
-    html.setAttribute("data-attribute", "black");
+  } else if (chosenTheme == "green") {
+    html.setAttribute("data-attribute", "green");
+  } else if (chosenTheme == "blue") {
+    html.setAttribute("data-attribute", "blue");
   } else if (chosenTheme == "pink") {
     html.setAttribute("data-attribute", "pink");
   } else if (chosenTheme == "defoult") {
     html.setAttribute("data-attribute", "");
+  } else if (chosenTheme == "yellow") {
+    html.setAttribute("data-attribute", "yellow");
   }
 }
 
@@ -163,8 +153,22 @@ function displayTask(task) {
 
 //MESSAGE OF THE DAY
 function showInspMes() {
-  document.querySelector(".message").textContent = `Be kind.`;
   document.querySelector(".insp").textContent = `${wd}'s inspiration:`;
+  if (wd === days[0]) {
+    document.querySelector(".message").textContent = `Be kind.`;
+  } else if (wd === days[1]) {
+    document.querySelector(".message").textContent = `Hire Ewa as an intern.`;
+  } else if (wd === days[2]) {
+    document.querySelector(".message").textContent = `Be polite.`;
+  } else if (wd === days[3]) {
+    document.querySelector(".message").textContent = `Hire Ewa as an intern.`;
+  } else if (wd === days[4]) {
+    document.querySelector(".message").textContent = `Be productive.`;
+  } else if (wd === days[5]) {
+    document.querySelector(".message").textContent = `Hire Ewa as an intern.`;
+  } else if (wd === days[6]) {
+    document.querySelector(".message").textContent = `Be positive.`;
+  }
 }
 
 //MENU SLIDER

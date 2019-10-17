@@ -8,27 +8,35 @@ html {
 /* #f07c5a */
 
 html[data-attribute="pink"] {
-  --color-primary: #6e7cff;
-  --color-secondary: #fff;
-  --color-bg: pink;
+  --color-font: #fff;
+  --color-nav: #b595ba;
+  --color-task: #77627a;
+  --color-bg-main: linear-gradient(#b595ba, #f3c7fa);
+  --color-bg-header: linear-gradient(#dab4e0, #b595ba);
 }
 
 html[data-attribute="yellow"] {
-  --color-primary: #d8b8d8;
-  --color-secondary: #806980;
-  --color-bg: yellow;
+  --color-font: #3b391e;
+  --color-nav: #bab45f;
+  --color-task: #807c41;
+  --color-bg-main: linear-gradient(#bab45f, #faf27f);
+  --color-bg-header: linear-gradient(#e0d972, #bab45f);
 }
 
-html[data-attribute="black"] {
-  --color-primary: #d8b8d8;
-  --color-secondary: #806980;
-  --color-bg: black;
+html[data-attribute="blue"] {
+  --color-font: #25313d;
+  --color-nav: #7296ba;
+  --color-task: #4e6780;
+  --color-bg-main: linear-gradient(#7296ba, #89b5e0);
+  --color-bg-header: linear-gradient(#98c9fa, #7296ba);
 }
 
-html[data-attribute="white"] {
-  --color-primary: #d8b8d8;
-  --color-secondary: #806980;
-  --color-bg: white;
+html[data-attribute="green"] {
+  --color-font: #2e3d30;
+  --color-nav: #8cba91;
+  --color-task: #608064;
+  --color-bg-main: linear-gradient(#8cba91, #a8e0af);
+  --color-bg-header: linear-gradient(#bbfac3, #8cba91);
 }
 
 /* BASE ------------- */
@@ -87,6 +95,11 @@ main {
   font-size: 13rem;
 }
 
+.container {
+  width: 48rem;
+  max-width: 480px;
+}
+
 .time-wrapper,
 .day-wrapper {
   display: grid;
@@ -118,14 +131,43 @@ main {
 
 .leaf {
   position: absolute;
-  top: 0;
+  top: 3%;
   left: -9rem;
   width: 50rem;
-  height: 100vh;
+  height: 90rem;
   background: url("leaf1.png");
   background-size: 90%;
   background-repeat: no-repeat;
   transform: rotate(-17deg);
+}
+
+.tasks-container {
+  display: grid;
+  width: 100%;
+  transition: all 0.2s ease-in;
+}
+
+.taskAnimate {
+  animation: slideTask 0.5s ease-in-out 0s forwards,
+    slideInTask 0.5s ease-in-out 0.5s forwards;
+}
+
+@keyframes slideTask {
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInTask {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .task {
@@ -135,8 +177,17 @@ main {
   margin-bottom: 6rem;
   background: var(--color-task);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.55);
+  outline: 3px solid transparent;
 
   position: relative;
+  transition: all 0.2s ease-in;
+}
+
+.task:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.65);
+  outline-offset: 2rem;
+  outline: 3px solid var(--color-task);
 }
 
 .task h2 {
@@ -201,9 +252,15 @@ input {
   font-family: inherit;
   font-size: 3rem;
   font-weight: 400;
-  color: #fff;
+  color: var(--color-font);
 
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in;
+}
+
+input:focus,
+select:focus {
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
 }
 
 input::placeholder {
@@ -214,10 +271,19 @@ input::placeholder {
 
 #submitTitle {
   display: inline-block;
+  margin-left: 2rem;
   border: 0;
   background: transparent;
   font-size: 4rem;
   color: var(--color-nav);
+  outline: none;
+  transform: translateX(-50%);
+
+  cursor: pointer;
+}
+
+#submitTitle:hover {
+  animation: rotateme 0.5s linear forwards;
 }
 
 select {
@@ -228,7 +294,7 @@ select {
   background: var(--color-bg-header);
   padding: 0.5rem 1rem;
   font-size: 3rem;
-  color: #fff;
+  color: var(--color-font);
   border: none;
   border-radius: 0;
   outline: none;
@@ -309,4 +375,61 @@ select {
   right: 20%;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: 1000000;
+}
+
+/* MEDIA QUERIES ------------- */
+@media only screen and (max-width: 1000px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100vw;
+  }
+  main {
+    grid-gap: 5rem;
+  }
+  .container {
+    width: 95vw;
+  }
+  .leaf {
+    transform: translateX(-60%);
+    left: 55%;
+    top: 10rem;
+  }
+  .task:nth-child(2) {
+    transform: scale(1.1);
+    box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.65);
+    outline-offset: 2rem;
+    outline: 3px solid var(--color-task);
+  }
+  .tasks-container {
+    justify-items: center;
+  }
+  #pageTitle {
+    font-size: 12rem;
+  }
+  .insMes {
+    align-self: center;
+  }
+  .insp {
+    margin-top: 1rem;
+  }
+  .nextDay {
+    right: 0.5rem;
+  }
+  .nav {
+    display: block;
+  }
+  .nav-invisible {
+    display: none;
+  }
+  .nav-content {
+    width: 100vw;
+  }
 }
