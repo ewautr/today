@@ -7,6 +7,7 @@ function init() {
   showInspMes();
   showTime();
   showDate();
+  loadWeather();
 }
 
 //DATE
@@ -173,12 +174,8 @@ function showInspMes() {
 
 //WEATHER
 
-const myKey = "2f731d68266059566f0e98e6c2e29449";
-const cphID = "2618425";
-loadWeather();
 function loadWeather() {
   fetch(
-    // `https://api.openweathermap.org/data/2.5/weather?id=${cphID}&appid=${myKey}`
     `http://api.weatherstack.com/current?access_key=5d981d3370e966c5506c614b65e84690&query=Copenhagen`
   )
     .then(response => response.json())
